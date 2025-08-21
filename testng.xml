@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="WeatherShopperSuite" parallel="methods" thread-count="2">
+    <listeners>
+        <listener class-name="utils.TestListener"/>
+    </listeners>
+    <test name="WeatherShopperTests">
+        <classes>
+            <class name="testcases.WeatherShopperTest"/>
+        </classes>
+    </test>
+</suite>

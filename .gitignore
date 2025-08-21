@@ -1,2 +1,21 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Build
 /target/
 /bin/
+
+# Test reports & logs
+/test-output/
+/logs/
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
