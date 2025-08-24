@@ -6,9 +6,10 @@ import java.lang.reflect.Method;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import factory.DriverFactory;
 
 public class BaseTest {
 
@@ -19,7 +20,7 @@ public class BaseTest {
 	public void setUp(Method method) {
 		String testName = initializeLogger(method);
 		logger.info("===== Starting test: " + testName + " =====");
-		WebDriver webDriver = new ChromeDriver();
+		WebDriver webDriver = DriverFactory.getDriver();
 		driver.set(webDriver);
 		driver.get().manage().window().maximize();
 		driver.get().get(ConfigReader.getProperty("baseUrl"));
@@ -44,7 +45,7 @@ public class BaseTest {
 	public String initializeLogger(Method method) {
 		String testName = sanitizeFileName(method.getName());
 		LoggerHelper.setTestName(testName);
-		ThreadContext.put("testName", testName); // ensure Log4j routing appender can use it
+		ThreadContext.put("testName", testName);
 		System.setProperty("reportFolder", ConfigReader.getReportFolder());
 		File logDir = new File(ConfigReader.getReportFolder() + "/logs");
 		if (!logDir.exists()) {

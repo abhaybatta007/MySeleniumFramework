@@ -10,7 +10,6 @@ public class LoggerHelper {
 		return LogManager.getLogger(clazz);
 	}
 
-	// For TestListener / BaseTest
 	public static void setTestName(String name) {
 		ThreadContext.put("testName", name);
 	}
