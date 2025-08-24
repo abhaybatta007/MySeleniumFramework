@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "M3"
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Build') {
+            steps {
+                git branch: 'main', credentialsId: 'MyGitHub', url: 'https://github.com/abhaybatta007/MySeleniumFramework.git'
+                bat "mvn clean install"
+            }
+        }
+    }
+}

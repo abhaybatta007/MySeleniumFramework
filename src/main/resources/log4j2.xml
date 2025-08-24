@@ -2,9 +2,9 @@
 <Configuration status="WARN">
     <Appenders>
         <Routing name="RoutingAppender">
-            <Routes pattern="${ctx:testName}">
+            <Routes pattern="${ctx:testName:-default}">
                 <!-- Default log (before testName is set) -->
-                <Route key="">
+                <Route key="default">
                     <File name="DefaultFile"
                           fileName="${sys:user.dir}/${sys:reportFolder}/logs/default.log"
                           append="false">
@@ -13,7 +13,7 @@
                 </Route>
 
                 <!-- Per-test logs -->
-                <Route>
+                <Route key="*">
                     <File name="File-${ctx:testName}"
                           fileName="${sys:user.dir}/${sys:reportFolder}/logs/${ctx:testName}.log"
                           append="false">
